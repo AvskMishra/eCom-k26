@@ -1,0 +1,5 @@
+<Solution>
+  <Project Path="D:/Codebase/2k26/eCommerce.Solution.UserService/eCommerce.API/eCommerce.API.csproj" />
+  <Project Path="D:/Codebase/2k26/eCommerce.Solution.UserService/eCommerce.Core/eCommerce.Core.csproj" />
+  <Project Path="D:/Codebase/2k26/eCommerce.Solution.UserService/eCommerce.Infrastructure/eCommerce.Infrastructure.csproj" />
+</Solution>
