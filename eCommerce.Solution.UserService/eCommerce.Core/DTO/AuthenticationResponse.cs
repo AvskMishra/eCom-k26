@@ -6,5 +6,5 @@ public record AuthenticationResponse(
   string? PersonName,
   string? Gender,
   string? Token,
-  bool Sucess
+  bool Success
   );

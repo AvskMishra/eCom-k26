@@ -24,7 +24,7 @@ internal class UsersService : IUsersService
             return null;
         }
 
-        return new AuthenticationResponse(user.UserID, user.Email, user.PersonName, user.Gender, "token", Sucess: true);
+        return new AuthenticationResponse(user.UserID, user.Email, user.PersonName, user.Gender, "token",Success: true);
     }
 
 
@@ -45,6 +45,6 @@ internal class UsersService : IUsersService
         }
 
         //Return success response
-        return new AuthenticationResponse(registeredUser.UserID, registeredUser.Email, registeredUser.PersonName, registeredUser.Gender, "token", Sucess: true);
+        return new AuthenticationResponse(registeredUser.UserID, registeredUser.Email, registeredUser.PersonName, registeredUser.Gender, "token", Success: true);
     }
 }
