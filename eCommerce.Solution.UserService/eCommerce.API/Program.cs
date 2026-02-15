@@ -1,4 +1,3 @@
-
 using eCommerce.API.Middlewares;
 using eCommerce.Core;
 using eCommerce.Core.Mappers;
@@ -12,16 +11,16 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddInfrastructure();
 builder.Services.AddCore();
 
-
-
 // Add controllers to the service collection
 builder.Services.AddControllers().AddJsonOptions(options =>
 {
     options.JsonSerializerOptions.Converters.Add(new JsonStringEnumConverter());
 });
 
-//Add AutoMapper and register mapping profiles
-builder.Services.AddAutoMapper(typeof(ApplicationUserMappingProfile).Assembly);
+//Add AutoMapper and register mapping profiles for latest version of AutoMapper (v12 and above)
+//where the configuration is done in the AddAutoMapper method itself
+builder.Services.AddAutoMapper(cfg => { },
+    typeof(ApplicationUserMappingProfile).Assembly);
 
 //FluentValidations
 builder.Services.AddFluentValidationAutoValidation();
@@ -62,5 +61,7 @@ app.UseCors();
 app.UseAuthorization();
 app.UseAuthorization();
 
+//Controller routes
+app.MapControllers();
 
 app.Run();
