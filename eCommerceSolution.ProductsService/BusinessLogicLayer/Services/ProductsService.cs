@@ -7,7 +7,7 @@ using FluentValidation;
 using FluentValidation.Results;
 using System.Linq.Expressions;
 
-namespace BusinessLogicLayer.Services;
+namespace eCommerce.BusinessLogicLayer.Services;
 
 public class ProductsService : IProductsService
 {
@@ -17,7 +17,9 @@ public class ProductsService : IProductsService
     private readonly IProductsRepository _productsRepository;
 
 
-    public ProductsService(IValidator<ProductAddRequest> productAddRequestValidator, IValidator<ProductUpdateRequest> productUpdateRequestValidator, IMapper mapper, IProductsRepository productsRepository)
+    public ProductsService(IValidator<ProductAddRequest> productAddRequestValidator,
+        IValidator<ProductUpdateRequest> productUpdateRequestValidator, 
+        IMapper mapper, IProductsRepository productsRepository)
     {
         _productAddRequestValidator = productAddRequestValidator;
         _productUpdateRequestValidator = productUpdateRequestValidator;
@@ -28,7 +30,7 @@ public class ProductsService : IProductsService
 
     public async Task<ProductResponse?> AddProduct(ProductAddRequest productAddRequest)
     {
-        if (productAddRequest == null)
+        if (productAddRequest is null)
         {
             throw new ArgumentNullException(nameof(productAddRequest));
         }
@@ -48,7 +50,7 @@ public class ProductsService : IProductsService
         Product productInput = _mapper.Map<Product>(productAddRequest); //Map productAddRequest into 'Product' type (it invokes ProductAddRequestToProductMappingProfile)
         Product? addedProduct = await _productsRepository.AddProduct(productInput);
 
-        if (addedProduct == null)
+        if (addedProduct is null)
         {
             return null;
         }
@@ -63,7 +65,7 @@ public class ProductsService : IProductsService
     {
         Product? existingProduct = await _productsRepository.GetProductByCondition(temp => temp.ProductID == productID);
 
-        if (existingProduct == null)
+        if (existingProduct is null)
         {
             return false;
         }
@@ -77,7 +79,7 @@ public class ProductsService : IProductsService
     public async Task<ProductResponse?> GetProductByCondition(Expression<Func<Product, bool>> conditionExpression)
     {
         Product? product = await _productsRepository.GetProductByCondition(conditionExpression);
-        if (product == null)
+        if (product is null)
         {
             return null;
         }
@@ -110,7 +112,7 @@ public class ProductsService : IProductsService
     {
         Product? existingProduct = await _productsRepository.GetProductByCondition(temp => temp.ProductID == productUpdateRequest.ProductID);
 
-        if (existingProduct == null)
+        if (existingProduct is null)
         {
             throw new ArgumentException("Invalid Product ID");
         }
